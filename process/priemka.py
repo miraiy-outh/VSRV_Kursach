@@ -14,6 +14,10 @@ def priemka_dough():
     egg += 2000
     yeast += 2000
 
+    # сколько на данный момент поставлено сырья для теста
+    global dough_massive_priemka
+    dough_massive_priemka = [flour, sugar, milk, water, egg, yeast]
+
 
 # фруктово-ягодная начинка - для 1 партии используется 50 ед. сырья
 # скоропортящаяся, поэтому поставляется маленькими партиями и чаще (10 сек), чем другое сырье
@@ -25,6 +29,7 @@ def priemka_fill_fr_b():
     global cherry
     global peach
     global berries
+
     apple = 100
     raspberry = 100
     strawberry = 100
@@ -32,6 +37,10 @@ def priemka_fill_fr_b():
     cherry = 100
     peach = 100
     berries = 100
+
+    # сколько на данный момент поставлено фруктов и ягод
+    global fr_b_massive_priemka
+    fr_b_massive_priemka = [apple, raspberry, strawberry, lemon, cherry, peach, berries]
 
 
 # долгохранящаяся начинка - для 1 партии используется 50 ед. сырья; поставляется часто (30 сек)
@@ -48,3 +57,7 @@ def priemka_fill_long():
     poppy = 200
     cinnamon = 200
     vanilla = 200
+
+    # сколько на данный момент поставлено долгохр. начинок
+    global long_massive_priemka
+    long_massive_priemka = [chocolate, creme, caramel, poppy, cinnamon, vanilla]
