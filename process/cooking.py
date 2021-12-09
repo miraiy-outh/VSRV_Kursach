@@ -10,6 +10,8 @@ from pastry.vatrushka import *
 from pastry.yazichok import *
 
 from process.priemka import *
+from process.transporting import *
+from process.cleaning import *
 from process.packaging import *
 
 # всего на приготовление слоеного теста уходит 45 секунд
