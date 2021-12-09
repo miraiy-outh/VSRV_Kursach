@@ -1,5 +1,6 @@
 import time
 
 #эмулирование транспортировки
-def transporting():
+def transport():
+    print('---------------------transporting---------------------')
     time.sleep(10)

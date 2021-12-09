@@ -2,79 +2,77 @@ import random
 
 from pastry.bun import *
 from pastry.croissant import *
-from pastry.donat import *
+from pastry.donut import *
 from pastry.konvertick import *
 from pastry.pie import *
 from pastry.sochnick import *
 from pastry.vatrushka import *
 from pastry.yazichok import *
 
-from process.priemka import *
-from process.transporting import *
+from process import cleaning
 from process.cleaning import *
 from process.packaging import *
+from process import packaging
 
 # всего на приготовление слоеного теста уходит 45 секунд
 def cooking_flaky():
-    global dough_massive_priemka
+    print('----------------cooking_flaky-------------------')
     tmp = 0
 
-    for i in range(0, len(dough_massive_priemka)):
-        if i != 5 and dough_massive_priemka[i] < 1000:
+    for i in range(0, len(priemka.dough_massive_priemka)):
+        if i != 5 and priemka.dough_massive_priemka[i] < 1000:
             tmp = 1
     if tmp == 0:
-        for i in range(0, len(dough_massive_priemka)):
+        for i in range(0, len(priemka.dough_massive_priemka)):
             if i != 5:
-                dough_massive_priemka[i] -= 1000;
-                time.sleep(15)  # замес
-                time.sleep(30)  # слоение
+                priemka.dough_massive_priemka[i] -= 1000;
+                time.sleep(1)  # замес
+                time.sleep(1)  # слоение
 
 
 # всего на приготовление дрожжевого теста уходит 95 секунд
 def cooking_yeast():
-    global dough_massive_priemka
+    print('---------------cooking_yeast----------------')
     tmp = 0
 
-    for i in range(0, len(dough_massive_priemka)):
-        if dough_massive_priemka[i] < 1000:
+    for i in range(0, len(priemka.dough_massive_priemka)):
+        if priemka.dough_massive_priemka[i] < 1000:
             tmp = 1
     if tmp == 0:
-        for i in range(0, len(dough_massive_priemka)):
-            dough_massive_priemka[i] -= 1000;
-            time.sleep(5)  # замес опары
-            time.sleep(60)  # брожение опары
-            time.sleep(30)  # замес теста
+        for i in range(0, len(priemka.dough_massive_priemka)):
+            priemka.dough_massive_priemka[i] -= 1000;
+            time.sleep(1)  # замес опары
+            time.sleep(1)  # брожение опары
+            time.sleep(1)  # замес теста
 
 
 # всего на приготовление слоено-дрожжевого теста уходит 80 секунд
 def cooking_flaky_yeast():
-    global dough_massive_priemka
+    print('---------------cooking_flaky_yeast----------------')
     tmp = 0
 
-    for i in range(0, len(dough_massive_priemka)):
-        if dough_massive_priemka[i] < 1000:
+    for i in range(0, len(priemka.dough_massive_priemka)):
+        if priemka.dough_massive_priemka[i] < 1000:
             tmp = 1
     if tmp == 0:
-        for i in range(0, len(dough_massive_priemka)):
-            dough_massive_priemka[i] -= 1000;
-            time.sleep(5)  # замес опары
-            time.sleep(30)  # брожение опары
-            time.sleep(15)  # замес теста
-            time.sleep(30)  # слоение
+        for i in range(0, len(priemka.dough_massive_priemka)):
+            priemka.dough_massive_priemka[i] -= 1000;
+            time.sleep(1)  # замес опары
+            time.sleep(1)  # брожение опары
+            time.sleep(1)  # замес теста
+            time.sleep(1)  # слоение
+
 
 
 def choose_dough():
-    transporting()
-    global ready_product
-    global product_name
+    transport()
+    print('------------------choose_dough---------------------')
     global pastry_count  # количество приготовленного товара каждого вида
-    global fr_b_massive_ready
-    global fr_b_name
-    global long_name
+    global product
     pastry_massive = ['bun', 'croissant', 'donut', 'konvertick', 'pie', 'sochnick', 'vatrushka', 'yazichok']
 
     # выбор изделия
-    choice = random.randint(0, len(pastry_massive) - 1)
+    choice = pastry_massive[random.randint(0, len(pastry_massive) - 1)]
     if choice == 'bun':
         product = Bun()
     elif choice == 'croissant':
@@ -87,22 +85,24 @@ def choose_dough():
         product = Pie()
     elif choice == 'sochnick':
         product = Sochnick()
+        choice_fill = product.get_fill()[0]
     elif choice == 'vatrushka':
         product = Vatrushka()
-    elif choice == 'yazichok':
-        product = Yazichok()
+        choice_fill = product.get_fill()[0]
     else:
-        pass
+        product = Yazichok()
+        choice_fill = ''
 
     # определение начинки и ее приготовление
+    print('-----------------------choose_fill----------------------')
     choice_fill = random.randint(0, len(product.get_fill()) - 1)
-    if fr_b_name.find(product.get_fill()[choice_fill]) != -1:
-        if fr_b_massive_ready[fr_b_name.find(product.get_fill()[choice_fill])] >= 100:
-            fr_b_massive_ready[fr_b_name.find(product.get_fill()[choice_fill])] -= 100
+    if priemka.fr_b_name.count(product.get_fill()[choice_fill]) == 1:
+        if cleaning.fr_b_massive_ready[priemka.fr_b_name.index(product.get_fill()[choice_fill])] >= 100:
+            cleaning.fr_b_massive_ready[priemka.fr_b_name.index(product.get_fill()[choice_fill])] -= 100
             time.sleep(15)
-    if long_name.find(product.get_fill()[choice_fill]) != -1:
-        if long_name[long_name.find(product.get_fill()[choice_fill])] >= 100:
-            long_name[long_name.find(product.get_fill()[choice_fill])] -= 100
+    elif priemka.long_massive_priemka.count(product.get_fill()[choice_fill]) == 1:
+        if priemka.long_name[priemka.long_massive_priemka.index(product.get_fill()[choice_fill])] >= 100:
+            priemka.long_name[priemka.long_massive_priemka.index(product.get_fill()[choice_fill])] -= 100
             time.sleep(10)
 
     # определение вида теста
@@ -112,5 +112,8 @@ def choose_dough():
         cooking_yeast()
     elif product.get_dough() == 'flaky-yeast':
         cooking_flaky_yeast()
-    ready_product += 100
-    product_name = [product.get_dough() + '' + product.get_fill()[choice_fill]]
+
+    packaging.ready_product += 100
+    tmp = choice + product.get_fill()[choice_fill]
+    print(f'-------------------{tmp}--------------------')
+    packaging.product_name = [tmp]

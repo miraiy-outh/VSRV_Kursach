@@ -1,18 +1,20 @@
-from process.priemka import *
+from process import priemka
 from process.transporting import *
 import time
 
+fr_b_massive_ready = [0] * 7
+
+
 # задержка - 5 секунд
-def cleaning():
-    transporting() #транспортировка из другого помещения
-    global fr_b_massive_priemka
-    global fr_b_massive_ready # массив очищенных фруктов и ягод
+def cleaning_fr():
+    transport() #транспортировка из другого помещения
+    print('-------------------cleaning----------------------')
     tmp = 0
-    for i in range(0, len(fr_b_massive_priemka)):
-        if fr_b_massive_priemka[i] < 100:
+    for i in range(0, len(priemka.fr_b_massive_priemka)):
+        if priemka.fr_b_massive_priemka[i] < 100:
             tmp = 1
     if tmp == 0:
-        for i in range(0, len(fr_b_massive_priemka)):
-            fr_b_massive_priemka[i] -= 100
-            fr_b_massive_priemka[i] += 100
+        for i in range(0, len(priemka.fr_b_massive_priemka)):
+            priemka.fr_b_massive_priemka[i] -= 100
+            priemka.fr_b_massive_priemka[i] += 100
     time.sleep(5)
