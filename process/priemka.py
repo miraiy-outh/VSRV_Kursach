@@ -1,3 +1,5 @@
+import time
+
 # продукты для теста - для 1 партии используется 1000 ед. сырья; задержка - 60 сек.
 def priemka_dough():
     global flour
@@ -17,6 +19,7 @@ def priemka_dough():
     # сколько на данный момент поставлено сырья для теста
     global dough_massive_priemka
     dough_massive_priemka = [flour, sugar, milk, water, egg, yeast]
+    time.sleep(60)
 
 
 # фруктово-ягодная начинка - для 1 партии используется 50 ед. сырья
@@ -41,6 +44,7 @@ def priemka_fill_fr_b():
     # сколько на данный момент поставлено фруктов и ягод
     global fr_b_massive_priemka
     fr_b_massive_priemka = [apple, raspberry, strawberry, lemon, cherry, peach, berries]
+    time.sleep(10)
 
 
 # долгохранящаяся начинка - для 1 партии используется 50 ед. сырья; поставляется часто (30 сек)
@@ -61,3 +65,4 @@ def priemka_fill_long():
     # сколько на данный момент поставлено долгохр. начинок
     global long_massive_priemka
     long_massive_priemka = [chocolate, creme, caramel, poppy, cinnamon, vanilla]
+    time.sleep(30)
