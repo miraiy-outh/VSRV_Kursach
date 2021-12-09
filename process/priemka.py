@@ -30,13 +30,13 @@ def priemka_fill_fr_b():
     global peach
     global berries
 
-    apple = 100
-    raspberry = 100
-    strawberry = 100
-    lemon = 100
-    cherry = 100
-    peach = 100
-    berries = 100
+    apple += 100
+    raspberry += 100
+    strawberry += 100
+    lemon += 100
+    cherry += 100
+    peach += 100
+    berries += 100
 
     # сколько на данный момент поставлено фруктов и ягод
     global fr_b_massive_priemka
@@ -51,12 +51,12 @@ def priemka_fill_long():
     global poppy
     global cinnamon
     global vanilla
-    chocolate = 200
-    creme = 200
-    caramel = 200
-    poppy = 200
-    cinnamon = 200
-    vanilla = 200
+    chocolate += 200
+    creme += 200
+    caramel += 200
+    poppy += 200
+    cinnamon += 200
+    vanilla += 200
 
     # сколько на данный момент поставлено долгохр. начинок
     global long_massive_priemka
