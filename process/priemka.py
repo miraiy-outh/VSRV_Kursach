@@ -1,5 +1,8 @@
 import time
 
+fr_b_name = ['apple', 'raspberry', 'strawberry', 'lemon', 'cherry', 'peach', 'berries']
+long_name = ['chocolate', 'creme', 'caramel', 'poppy', 'cinnamon', 'vanilla']
+
 # продукты для теста - для 1 партии используется 1000 ед. сырья; задержка - 60 сек.
 def priemka_dough():
     global flour
@@ -9,11 +12,11 @@ def priemka_dough():
     global egg
     global yeast
 
-    flour += 2000
-    sugar += 2000
-    milk += 2000
-    water += 2000
-    egg += 2000
+    flour += 3000
+    sugar += 3000
+    milk += 3000
+    water += 3000
+    egg += 3000
     yeast += 2000
 
     # сколько на данный момент поставлено сырья для теста
@@ -24,7 +27,7 @@ def priemka_dough():
 
 # фруктово-ягодная начинка - для 1 партии используется 50 ед. сырья
 # скоропортящаяся, поэтому поставляется маленькими партиями и чаще (10 сек), чем другое сырье
-def priemka_fill_fr_b():
+def priemka_fr_b():
     global apple
     global raspberry
     global strawberry
