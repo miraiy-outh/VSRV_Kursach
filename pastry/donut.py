@@ -6,4 +6,3 @@ class Donut(Pastry):
         self.dough = 'yeast'
         self.fill = ['chocolate', 'creme', 'caramel', 'poppy', 'cinnamon', 'vanilla', ''] + \
                     ['apple', 'raspberry', 'strawberry', 'lemon', 'cherry', '', 'peach', 'berries']
-        self.decor = ['chocolate', 'sugar']
