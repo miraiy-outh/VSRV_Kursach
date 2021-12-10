@@ -5,6 +5,7 @@ expedition_product = 0
 expedition_massive = []
 
 
+# проверка на экспедицию каждый час
 def expedition_products():
     while True:
         global expedition_product

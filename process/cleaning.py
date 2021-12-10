@@ -5,7 +5,7 @@ import time
 fr_b_massive_ready = [0] * 7
 
 
-# 30 минут
+# 2 часа
 def cleaning_fr():
     while True:
         global fr_b_massive_ready
