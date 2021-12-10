@@ -1,18 +1,17 @@
 import time
+from tkinter import messagebox
 
 expedition_product = 0
 expedition_massive = []
 
 
 def expedition_products():
-    print('--------------------expedition-----------------------')
-    global expedition_product
-    global expedition_massive
-    if expedition_product >= 1000:
-        print('Следующие продукты отправлены:\n')
-        for i in range(0, len(expedition_massive)):
-            print(expedition_massive[i], '\n')
-        expedition_massive = []
-        expedition_product -= 1000
-        print('------------------------------------------------')
-        time.sleep(60)
+    while True:
+        global expedition_product
+        global expedition_massive
+        global exp_signal
+        if expedition_product >= 500:
+            messagebox.showinfo("Экспедиция отправлена!", f'{expedition_massive}')  # сообщение об отправке
+            expedition_massive = []
+            expedition_product -= 1000
+        time.sleep(1)

@@ -1,24 +1,34 @@
 import time
 from process.cooking import *
+from process.expedition import *
+from window import *
 
-#вывод количества продуктов на разных этапах приготовления
+
+# вывод количества продуктов на разных этапах приготовления
 def printing():
-    time.sleep(10)
+    while True:
+        time.sleep(0.16)
+        printed_info = f'''
+        Приемка: сырье для теста:
+        {priemka.dough_name}
+        {priemka.dough_massive_priemka}
 
-    print('Приемка: сырье для теста:')
-    print(priemka.dough_name)
-    print(priemka.dough_massive_priemka)
-    print('Приемка: фруктово-ягодная начинка:')
-    print(priemka.fr_b_name)
-    print(priemka.fr_b_massive_priemka)
-    print('Приемка: долгохранящаяся начинка:')
-    print(priemka.long_name)
-    print(priemka.long_massive_priemka)
+        Приемка: фруктово-ягодная начинка:
+        {priemka.fr_b_name}
+        {priemka.fr_b_massive_priemka}
 
-    print('Очистка:')
-    print(priemka.fr_b_name)
-    print(cleaning.fr_b_massive_ready)
+        Приемка: долгохранящаяся начинка:
+        {priemka.long_name}
+        {priemka.long_massive_priemka}
 
-    print('Готовых к отправке изделий:', packaging.ready_product)
-    print('-------------------------------------------------------')
+        Очистка:
+        {priemka.fr_b_name}
+        {cleaning.fr_b_massive_ready}
 
+        Готовых к отправке изделий: {packaging.ready_product}
+
+        К экспедиции готовы: 
+        {expedition.expedition_massive}
+        '''
+        clear()
+        ins(printed_info)

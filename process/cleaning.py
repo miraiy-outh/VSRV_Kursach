@@ -5,16 +5,13 @@ import time
 fr_b_massive_ready = [0] * 7
 
 
-# задержка - 5 секунд
+# 30 минут
 def cleaning_fr():
-    transport() #транспортировка из другого помещения
-    print('-------------------cleaning----------------------')
-    tmp = 0
-    for i in range(0, len(priemka.fr_b_massive_priemka)):
-        if priemka.fr_b_massive_priemka[i] < 100:
-            tmp = 1
-    if tmp == 0:
-        for i in range(0, len(priemka.fr_b_massive_priemka)):
-            priemka.fr_b_massive_priemka[i] -= 100
-            priemka.fr_b_massive_priemka[i] += 100
-    time.sleep(5)
+    while True:
+        global fr_b_massive_ready
+        transport() #транспортировка из другого помещения
+        for i in range(0, len(priemka.fr_b_massive_priemka) - 1):
+            if fr_b_massive_ready[i] <= 150 and priemka.fr_b_massive_priemka[i] < 200:
+                fr_b_massive_ready[i] += 50
+                priemka.fr_b_massive_priemka[i] -= 50
+        time.sleep(4)
